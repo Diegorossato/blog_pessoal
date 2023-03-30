@@ -53,8 +53,6 @@ public class Usuario {
 		this.foto = foto;
 	}
 
-	/* Insira os Getters and Setters */
-
 	public Long getId() {
 		return this.id;
 	}

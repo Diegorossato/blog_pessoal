@@ -29,6 +29,9 @@ public class UsuarioControllerTest {
 	private TestRestTemplate testRestTemplate;
 
 	@Autowired
+	private UsuarioService usuarioService;
+
+	@Autowired
 	private UsuarioRepository usuarioRepository;
 
 	@BeforeAll
@@ -36,7 +39,7 @@ public class UsuarioControllerTest {
 
 		usuarioRepository.deleteAll();
 
-		usuarioRepository.save(new Usuario(0L, "Root", "root@root.com", "rootroot", " "));
+		usuarioService.cadastrarUsuario(new Usuario(0L, "Root", "root@root.com", "rootroot", " "));
 
 	}
 
@@ -78,8 +81,6 @@ public class UsuarioControllerTest {
 	@DisplayName("Atualizar um Usuário")
 	public void deveAtualizarUmUsuario() {
 
-		UsuarioService usuarioService = new UsuarioService();
-
 		Optional<Usuario> usuarioCadastrado = usuarioService.cadastrarUsuario(new Usuario(0L, "Juliana Andrews",
 				"juliana_andres@email.com.br", "juliana123", "https://i.imgur.com/yDRVeK7.jpg"));
 
@@ -98,8 +99,6 @@ public class UsuarioControllerTest {
 	@Test
 	@DisplayName("Listar todos os Usuários")
 	public void deveMostrarTodosUsuarios() {
-
-		UsuarioService usuarioService = new UsuarioService();
 
 		usuarioService.cadastrarUsuario(new Usuario(0L, "Sabrina Sanches", "sabrina_sanches@email.com.br", "sabrina123",
 				"https://i.imgur.com/5M2p5WB.jpg"));
